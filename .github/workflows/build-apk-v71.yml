@@ -19,6 +19,7 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -39,16 +40,16 @@ jobs:
           cat V71-part-00 V71-part-01 V71-part-02 V71-part-03 V71-part-04 > V71-Android-Project.zip
           unzip -tq V71-Android-Project.zip
           unzip -q V71-Android-Project.zip -d source
-          test -f source/V70-work/settings.gradle.kts
+          test -f source/V71-work/settings.gradle.kts
 
       - name: Build debug APK
-        working-directory: source/V70-work
+        working-directory: source/V71-work
         run: gradle --no-daemon assembleDebug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: blue-big-fish-v71-apk
-          path: source/V70-work/app/build/outputs/apk/debug/app-debug.apk
+          path: source/V71-work/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
           retention-days: 14
